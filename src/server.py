@@ -1,4 +1,5 @@
 import logging
+import os
 
 from pydantic import ValidationError
 from sanic import Sanic, Blueprint, Request
@@ -45,7 +46,7 @@ async def events(req: Request):
 @v1.get("/health", name="v1.health")
 async def health(_: Request):
     resp_data = HealthResp(
-        model="gpt-3.5-turbo-16k",
+        model=os.getenv("model", "gpt-3.5-turbo-1106"),
         device="",
         arch="",
         cpu_info="",
@@ -56,4 +57,4 @@ async def health(_: Request):
         ),
     )
 
-    return json(resp_data.model_dump())
+    return json(resp_data.json())

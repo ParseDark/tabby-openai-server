@@ -22,11 +22,10 @@ client = openai.AsyncOpenAI(
     api_key=os.getenv("api_key")
 )
 
-
 async def code_comp(data: CompletionReq) -> CompletionResp:
     try:
         resp = await client.chat.completions.create(
-            model="gpt-3.5-turbo-16k",
+            model=os.getenv("model", "gpt-3.5-turbo-1106"),
             max_tokens=4096,
             messages=[
                 {
