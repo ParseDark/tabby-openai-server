@@ -15,13 +15,18 @@ from src.models import (
 #     timeout=60.0,
 # )
 
-client = openai.AsyncOpenAI(api_key=os.getenv("openai_api_key"), timeout=60.0)
+client = openai.AsyncOpenAI(
+    # base_url="https://gptapi.us/v1",
+    base_url=os.getenv("base_url"),
+    # api_key="sk-xxxx,
+    api_key=os.getenv("api_key")
+)
 
 
 async def code_comp(data: CompletionReq) -> CompletionResp:
     try:
         resp = await client.chat.completions.create(
-            model="gpt-4-1106-preview",
+            model="gpt-3.5-turbo-16k",
             max_tokens=4096,
             messages=[
                 {

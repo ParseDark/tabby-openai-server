@@ -42,10 +42,10 @@ async def events(req: Request):
         return empty(status=200)
 
 
-@v1.post("/health", name="v1.health")
+@v1.get("/health", name="v1.health")
 async def health(_: Request):
     resp_data = HealthResp(
-        model="GPT-4",
+        model="gpt-3.5-turbo-16k",
         device="",
         arch="",
         cpu_info="",
