@@ -12,7 +12,7 @@ gpt-4 to complete code.
 python3 -m pip install -r requirements.txt
 
 # run
-openai_api_key=xxx python3 main.py
+base_url="https://xxxx.us/v1" api_key="sk-xxxx" python3 ./main.py
 ```
 
 ### IDE Extensions
