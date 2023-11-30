@@ -7,6 +7,7 @@ from sanic.response import json, empty
 
 from src.completions import code_comp
 from src.models import HealthResp, HealthVersion, EventReq, CompletionReq
+from src.config import DEFAULT_LLM_MODEL
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +47,7 @@ async def events(req: Request):
 @v1.get("/health", name="v1.health")
 async def health(_: Request):
     resp_data = HealthResp(
-        model=os.getenv("model", "gpt-3.5-turbo-1106"),
+        model=os.getenv("model", DEFAULT_LLM_MODEL),
         device="",
         arch="",
         cpu_info="",

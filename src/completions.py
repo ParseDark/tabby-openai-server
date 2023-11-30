@@ -7,6 +7,7 @@ from src.models import (
     CompletionResp,
     CompletionChoice,
 )
+from src.config import DEFAULT_LLM_MODEL
 
 # client = openai.AsyncAzureOpenAI(
 #     azure_endpoint=os.getenv("azure_endpoint"),
@@ -25,7 +26,7 @@ client = openai.AsyncOpenAI(
 async def code_comp(data: CompletionReq) -> CompletionResp:
     try:
         resp = await client.chat.completions.create(
-            model=os.getenv("model", "gpt-3.5-turbo-1106"),
+            model=os.getenv("model", DEFAULT_LLM_MODEL),
             max_tokens=4096,
             messages=[
                 {
